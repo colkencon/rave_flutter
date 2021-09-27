@@ -12,7 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^0.18.1
-  http: ^0.12.2
+  http:
   intl:
   meta: ^1.1.8
   async: ^2.4.2
