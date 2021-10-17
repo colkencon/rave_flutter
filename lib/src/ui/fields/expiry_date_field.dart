@@ -24,6 +24,7 @@ class ExpiryDateField extends BaseTextField {
             new LengthLimitingTextInputFormatter(4),
             new CardMonthInputFormatter()
           ],
+           style: TextStyle(color: Colors.black)
         );
 
   static String validateDate(String value) {

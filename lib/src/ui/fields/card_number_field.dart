@@ -15,7 +15,7 @@ class CardNumberField extends BaseTextField {
     ValueChanged<String> onFieldSubmitted,
   }) : super(
           labelText: 'CARD NUMBER',
-          hintText: '0000 0000 0000 0000',
+          hintText: '0000 0990 0000 0000',
           controller: controller,
           onSaved: onSaved,
           suffixIcon: suffix,
@@ -28,6 +28,7 @@ class CardNumberField extends BaseTextField {
             new LengthLimitingTextInputFormatter(19),
             new CardNumberInputFormatter()
           ],
+          style: TextStyle(color: Colors.black)
         );
 
   static String validateCardNum(String input) {

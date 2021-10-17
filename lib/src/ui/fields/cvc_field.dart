@@ -22,6 +22,7 @@ class CVVField extends BaseTextField {
             WhitelistingTextInputFormatter.digitsOnly,
             new LengthLimitingTextInputFormatter(4),
           ],
+           style: TextStyle(color: Colors.black)
         );
 
   static String validateCVV(String value) =>
