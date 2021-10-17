@@ -57,10 +57,11 @@ class RavePayManager {
     var result = showDialog<RaveResult>(
       context: context,
       barrierDismissible: false,
-      builder: (_) => Theme(
-        data: _getDefaultTheme(context),
-        child: RavePayWidget(),
-      ),
+      // builder: (_) => Theme(
+      //   data: _getDefaultTheme(context),
+      //   child: RavePayWidget(),
+      // ),
+       builder: (_) =>  RavePayWidget(),
     );
 
     // Return a cancelled response if result is null
