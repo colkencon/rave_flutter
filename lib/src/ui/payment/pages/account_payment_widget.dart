@@ -130,7 +130,7 @@ class _AccountPaymentWidgetState
             isDense: true,
             filled: true,
             errorText:
-                autoValidate && _selectedBank == null ? 'Select a bank' : null,
+                autoValidate == AutovalidateMode.always && _selectedBank == null ? 'Select a bank' : null,
             fillColor: Colors.grey[50],
             enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(

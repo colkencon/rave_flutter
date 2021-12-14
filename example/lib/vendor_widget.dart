@@ -11,7 +11,7 @@ class _AddVendorWidgetState extends State<AddVendorWidget> {
   var formKey = GlobalKey<FormState>();
   var refFocusNode = FocusNode();
   var ratioFocusNode = FocusNode();
-  bool autoValidate = false;
+  var autoValidate = AutovalidateMode.disabled;
   String id;
   String ratio;
 
@@ -27,7 +27,7 @@ class _AddVendorWidgetState extends State<AddVendorWidget> {
     return AlertDialog(
       content: Form(
         key: formKey,
-        autovalidate: autoValidate,
+        autovalidateMode: autoValidate,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -59,7 +59,7 @@ class _AddVendorWidgetState extends State<AddVendorWidget> {
                 ratioFocusNode.unfocus();
                 validateInputs();
               },
-              inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly,],
               validator: (value) =>
                   value.trim().isEmpty ? 'Field is required' : null,
             )
@@ -81,7 +81,7 @@ class _AddVendorWidgetState extends State<AddVendorWidget> {
       formState.save();
       Navigator.of(context).pop(SubAccount(id, ratio));
     } else {
-      setState(() => autoValidate = true);
+      setState(() => autoValidate = AutovalidateMode.always);
     }
   }
 }

@@ -1,21 +1,31 @@
 package com.flutterwave.rave_flutter
 
+import androidx.annotation.NonNull
+
+import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
-class RaveFlutterPlugin: MethodCallHandler {
-  companion object {
-    @JvmStatic
-    fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "rave_flutter")
-      channel.setMethodCallHandler(RaveFlutterPlugin())
+class RaveFlutterPlugin: FlutterPlugin, MethodCallHandler {
+  
+  private lateinit var channel : MethodChannel
+
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "rave_flutter")
+    channel.setMethodCallHandler(this)
+  }
+
+  override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    if (call.method == "getPlatformVersion") {
+      result.success("Android ${android.os.Build.VERSION.RELEASE}")
+    } else {
+      result.notImplemented()
     }
   }
 
-  override fun onMethodCall(call: MethodCall, result: Result) {
-    result.notImplemented()
+  override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
+    channel.setMethodCallHandler(null)
   }
 }
